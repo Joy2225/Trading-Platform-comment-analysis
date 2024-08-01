@@ -9,7 +9,8 @@ reddit = praw.Reddit(client_id=credentials.client_id, client_secret=credentials.
 
 def get_comments(url,replace_more_comments=False):
     submission = reddit.submission(url=url)
-    submission.comments.replace_more(limit=0)
+    if replace_more_comments:
+        submission.comments.replace_more(limit=0)
     return submission.comments.list()
 
 
